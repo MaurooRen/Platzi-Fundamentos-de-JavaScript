@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html(lang)="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title(Manejo) de Fechas</title>
+</head>
+<body>
+
+    <h1>Calcula(cuantos) dias llevas vivo!</h1>
+    <p>Como funciona:</p>
+
+    <button onclick="respuestaUsuario()" >Click!</button>
+    <p id="message"></p>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script>
+        function diasEntreFechas(fecha) {
+            const unDia = 1000 * 60 * 60 * 24 //Total de milisegundos en un dia
+            const hoy = new Date()
+            const diferencia = Math.abs(hoy - fecha) //Esto retorna la diferencia entre ambas fechas (en milisegundos)
+            return Math.floor(diferencia / unDia)
+        }
+
+        // const nacimiento = new Date(1997, 06, 28)
+
+        function convetirANumero(palabra) {
+            return parseFloat(palabra)
+        }
+
+        function respuestaUsuario() {
+            let annio = prompt('Dinos tu anno de nacimiento', '1997')
+            let mes = prompt('Dinos tu mes de nacimiento', '07')
+            let dia = prompt('Dinos tu dia de nacimiento', '28')
+
+            let annioNum = convetirANumero(annio)
+            let mesNum = (convetirANumero(mes) - 1)
+            let diaNum = convetirANumero(dia)
+
+
+            const nacimiento = new Date(annioNum, mesNum, diaNum)
+
+            if(annio != '' && mes != '' && dia != '') {
+                swal("Wow!", `Hasta ahora has vivido ${diasEntreFechas(nacimiento)} dias! Y de seguido!`, "success")
+                console.info("Success")
+            } else {
+                swal("Ups!", "La cirujia salio terriblemente mal!", "error");
+                console.error("Warning")
+            }
+                console.log("annio:", annio)
+                console.log("mes:", mes)
+                console.log("dia:", dia)
+
+        }
+
+
+
+
+
+    </script>
+    
+</body>
+</html>
